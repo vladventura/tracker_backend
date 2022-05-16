@@ -181,7 +181,7 @@ with a consequence of this:
 This endpoint attempts to find a part with a given ID. In the event that the path parameter is not a valid integer, it simply returns a 400 bad request.
 
 &nbsp;&nbsp;&nbsp;&nbsp;Methods: GET  
-&nbsp;&nbsp;&nbsp;&nbsp;Returns: [Part Model](#part-model)
+&nbsp;&nbsp;&nbsp;&nbsp;Returns: [Part Model](#part-model)  
 &nbsp;&nbsp;&nbsp;&nbsp;Input: Path Parameter
 
 This is the response of a valid input:
