@@ -9,7 +9,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="parts")
+@RequestMapping(path = "parts")
 public class PartController {
     private final PartService partService;
 
@@ -25,17 +25,20 @@ public class PartController {
 
     @PostMapping(path = "addPart")
     public void addPart(@Valid @RequestBody Part part) {
-        partService.addPart(part);
+        Thread addPartThread = new Thread(() -> {
+            PartUtilities.fetchCurrentPartPrice(part);
+            partService.addPart(part);
+        });
+        addPartThread.start();
     }
 
     @GetMapping(path = "/{id}")
     public Part findById(@PathVariable("id") Long id) {
-        try{
+        try {
             return partService.findById(id);
-        } catch (PartIDNotFoundException exc)  {
+        } catch (PartIDNotFoundException exc) {
             throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, exc.getMessage(), exc
-            );
+                    HttpStatus.NOT_FOUND, exc.getMessage(), exc);
         }
     }
 }
