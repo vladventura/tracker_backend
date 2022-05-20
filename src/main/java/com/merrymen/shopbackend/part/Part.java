@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class Part {
     @Id
     @SequenceGenerator(name = "part_sequence", sequenceName = "partSequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "part_sequence")
     private Long id;
     @NotEmpty(message = "Name cannot be empty")
     private String name;

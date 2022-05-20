@@ -14,15 +14,20 @@ public class PartService {
     public PartService(PartRepository partRepository) {
         this.partRepository = partRepository;
     }
+
     public List<Part> getAllParts() {
         return partRepository.findAll();
     }
+
     public void addPart(Part part) {
         partRepository.saveAndFlush(part);
     }
+
     public Part findById(Long id) throws PartIDNotFoundException {
         Optional<Part> part = partRepository.findById(id);
-        if (part.isPresent()) return part.get();
-        else throw new PartIDNotFoundException(id);
+        if (part.isPresent())
+            return part.get();
+        else
+            throw new PartIDNotFoundException(id);
     }
 }
